@@ -4,7 +4,7 @@ import arcade
 
 WIDTH = 600
 HEIGHT = 500
-SIZE = 5
+SIZE = 6
 
 class Snake(arcade.Sprite):
     def __init__(self):
@@ -13,7 +13,7 @@ class Snake(arcade.Sprite):
         self.width = SIZE
         self.height = SIZE
         self.body_pos_size = 0
-        self.speed = 5
+        self.speed = 6
         self.color = arcade.color.BLACK
         self.body_pos = []
 
@@ -65,7 +65,7 @@ class Apple(arcade.Sprite):
         
         self.width = SIZE*4
         self.height = SIZE*4
-        self.radius = 10
+        self.radius = 8
         self.color = arcade.color.RED
         
         self.center_x = random.randint(100,WIDTH-100)
@@ -80,7 +80,7 @@ class Bahbah(arcade.Sprite):
         
         self.width = SIZE*3
         self.height = SIZE*3
-        self.radius = 4
+        self.radius = 6
         self.color = arcade.color.YELLOW
         
         self.center_x = random.randint(50,WIDTH-50)
@@ -93,8 +93,8 @@ class Ahah(arcade.Sprite):
     def __init__(self):
         super().__init__()
         
-        self.width = SIZE*2
-        self.height = SIZE*2
+        self.width = SIZE*3
+        self.height = SIZE*3
         self.color = arcade.color.BROWN
 
         self.center_x = random.randint(25,WIDTH-25)
@@ -105,7 +105,7 @@ class Ahah(arcade.Sprite):
 
 class Game(arcade.Window):
     def __init__(self):
-        super().__init__(width=WIDTH,height=HEIGHT,title="SNAKE GAME",resizable=True)
+        super().__init__(width=WIDTH,height=HEIGHT,title="press [SPACE] to start",resizable=True)
         arcade.set_background_color(arcade.color.GREEN)
         
         self.snake = Snake()
@@ -115,13 +115,13 @@ class Game(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("RED : + / Yellow : ++ / Brown : --",200,480,arcade.color.BLACK,width=600,font_size=10)
+        arcade.draw_text("RED : + / Yellow : ++ / Brown : --",200,480,arcade.color.BLACK,width=600,font_size=10,bold=True)
         
         if (self.snake.center_x < 0) or (self.snake.center_x > WIDTH) or (self.snake.center_y < 0) or (self.snake.center_y > HEIGHT):
             self.on_key_press(arcade.key.SPACE,int)
 
         else:
-            text = f"score: {self.snake.score}"
+            text = f"SCORE : {self.snake.score}"
             arcade.draw_text(text,250,5,arcade.color.BLACK,15)
 
             self.snake.draw()
