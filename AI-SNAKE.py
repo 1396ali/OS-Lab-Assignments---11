@@ -1,4 +1,4 @@
-import random
+from random import randint
 import arcade
 
 
@@ -68,8 +68,8 @@ class Apple(arcade.Sprite):
         self.radius = 8
         self.color = arcade.color.RED
         
-        self.center_x = random.randint(100,WIDTH-100)
-        self.center_y = random.randint(100,HEIGHT-100)
+        self.center_x = randint(100,WIDTH-100)
+        self.center_y = randint(100,HEIGHT-100)
         
     def draw(self):
         arcade.draw_circle_filled(self.center_x,self.center_y,self.radius,self.color)
@@ -83,8 +83,8 @@ class Bahbah(arcade.Sprite):
         self.radius = 6
         self.color = arcade.color.YELLOW
         
-        self.center_x = random.randint(50,WIDTH-50)
-        self.center_y = random.randint(50,HEIGHT-50)
+        self.center_x = randint(50,WIDTH-50)
+        self.center_y = randint(50,HEIGHT-50)
         
     def draw(self):
         arcade.draw_circle_filled(self.center_x,self.center_y,self.radius,self.color)
@@ -97,8 +97,8 @@ class Ahah(arcade.Sprite):
         self.height = SIZE*3
         self.color = arcade.color.BROWN
 
-        self.center_x = random.randint(25,WIDTH-25)
-        self.center_y = random.randint(25,HEIGHT-25)
+        self.center_x = randint(25,WIDTH-25)
+        self.center_y = randint(25,HEIGHT-25)
         
     def draw(self):
         arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,self.color)
