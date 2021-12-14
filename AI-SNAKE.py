@@ -4,7 +4,7 @@ import arcade
 
 WIDTH = 600
 HEIGHT = 500
-SIZE = 6
+SIZE = 8
 
 class Snake(arcade.Sprite):
     def __init__(self):
@@ -13,7 +13,7 @@ class Snake(arcade.Sprite):
         self.width = SIZE
         self.height = SIZE
         self.body_pos_size = 0
-        self.speed = 6
+        self.speed = 8
         self.color = arcade.color.BLACK
         self.body_pos = []
 
