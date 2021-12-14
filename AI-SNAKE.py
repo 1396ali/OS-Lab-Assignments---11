@@ -97,8 +97,8 @@ class Ahah(arcade.Sprite):
         self.height = SIZE*3
         self.color = arcade.color.BROWN
 
-        self.center_x = randint(25,WIDTH-50)
-        self.center_y = randint(25,HEIGHT-50)
+        self.center_x = randint(25,WIDTH-75)
+        self.center_y = randint(25,HEIGHT-75)
         
     def draw(self):
         arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,self.color)
