@@ -26,7 +26,7 @@ class Snake(arcade.Sprite):
         self.score = 0
 
     def draw(self):
-        arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,arcade.color.WHITE,tilt_angle=45)
+        arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,arcade.color.WHITE,border_width=5,tilt_angle=45)
 
         for i , pos in enumerate(self.body_pos):
             if i%2 == 0:
