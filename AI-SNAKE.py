@@ -68,8 +68,8 @@ class Apple(arcade.Sprite):
         self.radius = 8
         self.color = arcade.color.RED
         
-        self.center_x = randint(100,WIDTH-10)
-        self.center_y = randint(100,HEIGHT-10)
+        self.center_x = randint(100,WIDTH-25)
+        self.center_y = randint(100,HEIGHT-25)
         
     def draw(self):
         arcade.draw_circle_filled(self.center_x,self.center_y,self.radius,self.color)
