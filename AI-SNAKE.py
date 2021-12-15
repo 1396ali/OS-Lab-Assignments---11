@@ -51,18 +51,18 @@ class Snake(arcade.Sprite):
     def eat_apple(self):
         self.body_pos_size += 1
         self.score += 1
-        self.fire_music = arcade.load_sound(":resources:sounds/hit4.wav")
-        arcade.play_sound(self.fire_music)
+        self.app_music = arcade.load_sound(":resources:sounds/hit4.wav")
+        arcade.play_sound(self.app_music)
 
     def eat_bahbah(self):
         self.score += 2
-        self.fire_music = arcade.load_sound(":resources:sounds/hurt4.wav")
-        arcade.play_sound(self.fire_music)
+        self.bah_music = arcade.load_sound(":resources:sounds/hurt4.wav")
+        arcade.play_sound(self.bah_music)
 
     def eat_ahah(self):
         self.score -= 1
-        self.fire_music = arcade.load_sound(":resources:sounds/gameover2.wav")
-        arcade.play_sound(self.fire_music)
+        self.ah_music = arcade.load_sound(":resources:sounds/gameover2.wav")
+        arcade.play_sound(self.ah_music)
 
 class Apple(arcade.Sprite):
     def __init__(self):
@@ -110,7 +110,7 @@ class Ahah(arcade.Sprite):
 
 class Game(arcade.Window):
     def __init__(self):
-        super().__init__(width=WIDTH,height=HEIGHT,title="press [SPACE] to start",resizable=True)
+        super().__init__(width=WIDTH,height=HEIGHT,title="AI-SNAKE",resizable=True)
         arcade.set_background_color(arcade.color.GREEN)
         
         self.snake = Snake()
@@ -120,7 +120,7 @@ class Game(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("RED : + / Yellow : ++ / Brown : --",200,480,arcade.color.BLACK,width=600,font_size=10,bold=True)
+        arcade.draw_text("(press [SPACE] to start)",220,480,arcade.color.BLACK,width=600,font_size=10,bold=True)
         
         if (self.snake.center_x < 0) or (self.snake.center_x > WIDTH) or (self.snake.center_y < 0) or (self.snake.center_y > HEIGHT):
             self.on_key_press(arcade.key.SPACE,int)
