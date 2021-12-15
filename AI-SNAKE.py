@@ -1,7 +1,6 @@
 from random import randint
 import arcade
 
-
 WIDTH = 600
 HEIGHT = 500
 SIZE = 8
@@ -26,7 +25,7 @@ class Snake(arcade.Sprite):
         self.score = 0
 
     def draw(self):
-        arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,arcade.color.WHITE,border_width=5,tilt_angle=45)
+        arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,arcade.color.WHITE)
 
         for i , pos in enumerate(self.body_pos):
             if i%2 == 0:
@@ -52,12 +51,18 @@ class Snake(arcade.Sprite):
     def eat_apple(self):
         self.body_pos_size += 1
         self.score += 1
+        self.fire_music = arcade.load_sound(":resources:sounds/hit4.wav")
+        arcade.play_sound(self.fire_music)
 
     def eat_bahbah(self):
         self.score += 2
+        self.fire_music = arcade.load_sound(":resources:sounds/hurt4.wav")
+        arcade.play_sound(self.fire_music)
 
     def eat_ahah(self):
         self.score -= 1
+        self.fire_music = arcade.load_sound(":resources:sounds/gameover2.wav")
+        arcade.play_sound(self.fire_music)
 
 class Apple(arcade.Sprite):
     def __init__(self):
