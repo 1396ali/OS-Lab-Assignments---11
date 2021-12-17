@@ -70,7 +70,7 @@ class Apple(arcade.Sprite):
         
         self.width = SIZE
         self.height = SIZE
-        self.image = arcade.load_texture("apple.png")
+        self.image = arcade.load_texture("img/apple.png")
         
         self.center_x = randint(50,WIDTH-50)
         self.center_y = randint(50,HEIGHT-50)
@@ -84,7 +84,7 @@ class Bahbah(arcade.Sprite):
         
         self.width = SIZE//2
         self.height = SIZE//2
-        self.image = arcade.load_texture("star.png")
+        self.image = arcade.load_texture("img/star.png")
         
         self.center_x = randint(100,WIDTH-100)
         self.center_y = randint(100,HEIGHT-100)
@@ -98,7 +98,7 @@ class Ahah(arcade.Sprite):
         
         self.width = SIZE
         self.height = SIZE
-        self.image = arcade.load_texture("fire.png")
+        self.image = arcade.load_texture("img/fire.png")
 
         self.center_x = randint(75,WIDTH-75)
         self.center_y = randint(75,HEIGHT-75)
