@@ -2,15 +2,15 @@ from random import randint
 import arcade
 
 WIDTH = 600
-HEIGHT = 500
-SIZE = 8
+HEIGHT = 600
+SIZE = 50
 
 class Snake(arcade.Sprite):
     def __init__(self):
         super().__init__()
 
-        self.width = SIZE
-        self.height = SIZE
+        self.width = SIZE // 5
+        self.height = SIZE // 5
         self.body_pos_size = 0
         self.speed = 8
         self.color = arcade.color.BLACK
@@ -25,7 +25,7 @@ class Snake(arcade.Sprite):
         self.score = 0
 
     def draw(self):
-        arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,arcade.color.WHITE,border_width=5,tilt_angle=45)
+        arcade.draw_rectangle_filled(self.center_x,self.center_y,self.width,self.height,arcade.color.WHITE,45)
 
         for i , pos in enumerate(self.body_pos):
             if i%2 == 0:
@@ -51,12 +51,12 @@ class Snake(arcade.Sprite):
     def eat_apple(self):
         self.body_pos_size += 1
         self.score += 1
-        self.app_music = arcade.load_sound(":resources:sounds/hit4.wav")
+        self.app_music = arcade.load_sound(":resources:sounds/hit3.wav")
         arcade.play_sound(self.app_music)
 
     def eat_bahbah(self):
         self.score += 2
-        self.bah_music = arcade.load_sound(":resources:sounds/hurt4.wav")
+        self.bah_music = arcade.load_sound(":resources:sounds/upgrade1.wav")
         arcade.play_sound(self.bah_music)
 
     def eat_ahah(self):
@@ -68,51 +68,49 @@ class Apple(arcade.Sprite):
     def __init__(self):
         super().__init__()
         
-        self.width = SIZE*4
-        self.height = SIZE*4
-        self.radius = 8
-        self.color = arcade.color.RED
+        self.width = SIZE
+        self.height = SIZE
+        self.image = arcade.load_texture("apple.png")
         
-        self.center_x = randint(100,WIDTH-25)
-        self.center_y = randint(100,HEIGHT-25)
+        self.center_x = randint(50,WIDTH-50)
+        self.center_y = randint(50,HEIGHT-50)
         
     def draw(self):
-        arcade.draw_circle_filled(self.center_x,self.center_y,self.radius,self.color)
+        arcade.draw_texture_rectangle(self.center_x,self.center_y,self.width,self.height,self.image)
 
 class Bahbah(arcade.Sprite):
     def __init__(self):
         super().__init__()
         
-        self.width = SIZE*3
-        self.height = SIZE*3
-        self.radius = 6
-        self.color = arcade.color.YELLOW
+        self.width = SIZE//2
+        self.height = SIZE//2
+        self.image = arcade.load_texture("star.png")
         
-        self.center_x = randint(50,WIDTH-100)
-        self.center_y = randint(50,HEIGHT-100)
+        self.center_x = randint(100,WIDTH-100)
+        self.center_y = randint(100,HEIGHT-100)
         
     def draw(self):
-        arcade.draw_circle_filled(self.center_x,self.center_y,self.radius,self.color)
+        arcade.draw_texture_rectangle(self.center_x,self.center_y,self.width,self.height,self.image)
 
 class Ahah(arcade.Sprite):
     def __init__(self):
         super().__init__()
         
-        self.width = SIZE*3
-        self.height = SIZE*3
-        self.color = arcade.color.BROWN
+        self.width = SIZE
+        self.height = SIZE
+        self.image = arcade.load_texture("fire.png")
 
-        self.center_x = randint(25,WIDTH-75)
-        self.center_y = randint(25,HEIGHT-75)
+        self.center_x = randint(75,WIDTH-75)
+        self.center_y = randint(75,HEIGHT-75)
         
     def draw(self):
-        arcade.draw_rectangle_outline(self.center_x,self.center_y,self.width,self.height,self.color)
+        arcade.draw_texture_rectangle(self.center_x,self.center_y,self.width,self.height,self.image)
 
 class Game(arcade.Window):
     def __init__(self):
-        super().__init__(width=WIDTH,height=HEIGHT,title="AI-SNAKE",resizable=True)
-        arcade.set_background_color(arcade.color.GREEN)
-        
+        super().__init__(WIDTH,HEIGHT,"AI-SNAKE")
+        self.background_image = arcade.load_texture(":resources:images/backgrounds/abstract_1.jpg")
+ 
         self.snake = Snake()
         self.apple = Apple()
         self.bahbah = Bahbah()
@@ -120,7 +118,8 @@ class Game(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("(press [SPACE] to start)",220,480,arcade.color.BLACK,width=600,font_size=10,bold=True)
+        arcade.draw_lrwh_rectangle_textured(0,0,WIDTH,HEIGHT,self.background_image)
+        arcade.draw_text("(press [SPACE] to start)",220,580,arcade.color.BLACK,width=600,font_size=10,bold=True)
         
         if (self.snake.center_x < 0) or (self.snake.center_x > WIDTH) or (self.snake.center_y < 0) or (self.snake.center_y > HEIGHT):
             self.on_key_press(arcade.key.SPACE,int)
@@ -185,6 +184,7 @@ class Game(arcade.Window):
         if key == arcade.key.SPACE:
             self.ai()
     
+    
 snake_game = Game()
-
+snake_game.center_window()
 arcade.run()
