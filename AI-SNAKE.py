@@ -180,7 +180,7 @@ class Game(arcade.Window):
                 self.snake.change_y = 0
                 self.snake.move()
 
-    def on_key_press(self, key: int, modifiers: int):  
+    def on_key_press(self, key , modifiers):  
         if key == arcade.key.SPACE:
             self.ai()
     
